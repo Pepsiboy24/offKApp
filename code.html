@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avenue Scholar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #00281c;
+        --primary-2: #0f4f3a;
+        --secondary: #a35127;
+        --gold: #ffd86a;
+        --background: #f6f0e8;
+        --surface: #fffdf9;
+        --surface-2: #f2ece4;
+        --text: #162018;
+        --muted: #807970;
+        --ok: #1a7b4b;
+        --warning: #b46e1f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Manrope", sans-serif;
+        background:
+          radial-gradient(circle at 20% 0%, rgba(255, 216, 106, 0.22), transparent 35%),
+          linear-gradient(180deg, #f7f2ea 0%, #f3ece3 100%);
+        color: var(--text);
+      }
+
+      .app {
+        margin: 0 auto;
+        width: min(100%, 1100px);
+        min-height: 100vh;
+        padding-bottom: 92px;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+        background: rgba(0, 40, 28, 0.94);
+        color: #fff;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 26px rgba(0, 0, 0, 0.16);
+      }
+
+      .left-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .icon-button {
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: inherit;
+      }
+
+      .brand {
+        font-size: 1.35rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+
+      .page {
+        padding: 18px 16px 24px;
+      }
+
+      .hero-title {
+        margin: 8px 0 0;
+        font-size: clamp(3rem, 11vw, 4.25rem);
+        line-height: 0.92;
+        letter-spacing: -0.06em;
+        font-weight: 800;
+        max-width: 7ch;
+        color: var(--primary);
+      }
+
+      .hero-title .accent {
+        color: var(--secondary);
+      }
+
+      .search-sheet {
+        margin-top: 18px;
+        border-radius: 22px;
+        background: rgba(255, 253, 249, 0.92);
+        backdrop-filter: blur(12px);
+        padding: 12px;
+        box-shadow: 0 20px 44px rgba(29, 27, 23, 0.08);
+      }
+
+      .search-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 14px;
+        background: #fff;
+        padding: 10px 12px;
+      }
+
+      .search-row input {
+        width: 100%;
+        border: 0;
+        outline: none;
+        background: transparent;
+        color: var(--text);
+        font: inherit;
+      }
+
+      .chips {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .chip {
+        border: 0;
+        border-radius: 12px;
+        background: var(--surface-2);
+        color: var(--text);
+        padding: 12px 10px;
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .chip.is-active {
+        background: #e3f0ea;
+        box-shadow: inset 0 0 0 1px rgba(15, 79, 58, 0.24);
+      }
+
+      .discover {
+        margin-top: 10px;
+        width: 100%;
+        border: 0;
+        border-radius: 13px;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%);
+        color: #fff;
+        padding: 12px;
+        font-weight: 800;
+        font-size: 0.95rem;
+      }
+
+      .status-row {
+        margin-top: 10px;
+        font-size: 0.82rem;
+        color: var(--muted);
+      }
+
+      .listing-stack {
+        display: grid;
+        gap: 18px;
+        margin-top: 16px;
+      }
+
+      .card {
+        border-radius: 28px;
+        overflow: hidden;
+        background: var(--surface);
+        box-shadow: 0 18px 38px rgba(27, 24, 18, 0.1);
+      }
+
+      .media {
+        position: relative;
+        height: 260px;
+        overflow: hidden;
+      }
+
+      .media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .verified {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        border-radius: 999px;
+        background: var(--gold);
+        color: #2f2502;
+        font-size: 0.58rem;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        padding: 7px 11px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .price {
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+        background: rgba(255, 255, 255, 0.92);
+        border-radius: 10px;
+        padding: 8px 10px;
+        font-weight: 800;
+      }
+
+      .card-body {
+        padding: 16px 16px 14px;
+        background:
+          linear-gradient(45deg, rgba(20, 32, 24, 0.03) 25%, transparent 25%),
+          linear-gradient(-45deg, rgba(20, 32, 24, 0.03) 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, rgba(20, 32, 24, 0.03) 75%),
+          linear-gradient(-45deg, transparent 75%, rgba(20, 32, 24, 0.03) 75%),
+          #fffcf8;
+        background-size: 32px 32px;
+        background-position: 0 0, 0 16px, 16px -16px, -16px 0;
+      }
+
+      .title {
+        margin: 0;
+        font-size: 1.12rem;
+        line-height: 1.18;
+        letter-spacing: -0.03em;
+      }
+
+      .meta {
+        margin: 6px 0 0;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.92rem;
+      }
+
+      .facts {
+        margin-top: 12px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+        font-size: 0.9rem;
+      }
+
+      .fact {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .card-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .ghost-btn,
+      .solid-btn {
+        border-radius: 12px;
+        padding: 9px 10px;
+        font-weight: 700;
+        font-size: 0.84rem;
+        border: 0;
+      }
+
+      .ghost-btn {
+        background: #ebe6de;
+        color: var(--text);
+      }
+
+      .solid-btn {
+        background: #0d4b37;
+        color: #fff;
+      }
+
+      .section-title {
+        margin: 4px 0 10px;
+        font-size: 1.22rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+
+      .panel {
+        background: var(--surface);
+        border-radius: 18px;
+        padding: 14px;
+        box-shadow: 0 12px 26px rgba(28, 26, 22, 0.08);
+      }
+
+      .panel + .panel {
+        margin-top: 12px;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .muted {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 5px 9px;
+      }
+
+      .badge.ok {
+        background: #def4e8;
+        color: #0a6540;
+      }
+
+      .badge.warn {
+        background: #f7ead5;
+        color: #8c5c14;
+      }
+
+      .empty {
+        text-align: center;
+        color: var(--muted);
+        padding: 26px 10px;
+      }
+
+      .bottom-nav {
+        position: fixed;
+        left: 50%;
+        bottom: 8px;
+        transform: translateX(-50%);
+        width: min(calc(100% - 16px), 460px);
+        background: rgba(255, 252, 247, 0.95);
+        border-radius: 24px;
+        box-shadow: 0 -2px 26px rgba(26, 24, 18, 0.14);
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 9px;
+        backdrop-filter: blur(10px);
+      }
+
+      .tab {
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        border-radius: 14px;
+        min-width: 72px;
+        padding: 8px 9px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        font-size: 0.6rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .tab.active {
+        background: var(--primary-2);
+        color: #fff;
+      }
+
+      .desktop-layout {
+        display: block;
+      }
+
+      @media (min-width: 960px) {
+        .app {
+          padding-bottom: 30px;
+        }
+
+        .topbar {
+          border-radius: 0 0 18px 18px;
+          margin: 0 10px;
+        }
+
+        .desktop-layout {
+          display: grid;
+          grid-template-columns: 0.88fr 1.12fr;
+          gap: 24px;
+          align-items: start;
+        }
+
+        .listing-stack {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .media {
+          height: 220px;
+        }
+
+        .bottom-nav {
+          position: sticky;
+          margin: 24px auto 0;
+          transform: none;
+          left: auto;
+          bottom: auto;
+          max-width: 560px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="left-group">
+          <button class="icon-button" aria-label="menu">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+          <div class="brand">Avenue Scholar</div>
+        </div>
+        <button class="icon-button" aria-label="notifications">
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+      </header>
+
+      <main id="page-host" class="page"></main>
+
+      <nav class="bottom-nav" aria-label="Primary">
+        <button class="tab active" data-tab="home">
+          <span class="material-symbols-outlined">home_work</span>
+          Home
+        </button>
+        <button class="tab" data-tab="bookings">
+          <span class="material-symbols-outlined">event_available</span>
+          Bookings
+        </button>
+        <button class="tab" data-tab="matching">
+          <span class="material-symbols-outlined">group_add</span>
+          Matching
+        </button>
+        <button class="tab" data-tab="profile">
+          <span class="material-symbols-outlined">person</span>
+          Profile
+        </button>
+      </nav>
+    </div>
+
+    <script>
+      const appState = {
+        tab: "home",
+        search: "",
+        filters: {
+          price: "Any",
+          area: "All",
+          type: "Any",
+        },
+        savedIds: new Set(),
+        bookings: [
+          { id: "b1", listingId: "l2", date: "2026-04-24", slot: "16:00", status: "Confirmed" },
+          { id: "b2", listingId: "l3", date: "2026-04-28", slot: "13:30", status: "Pending" },
+        ],
+        matchRequests: new Set(),
+      };
+
+      const listings = [
+        {
+          id: "l1",
+          title: "The Heritage Residency",
+          location: "Phase 1, Lekki",
+          area: "Lekki",
+          type: "2 Beds",
+          priceBand: "Mid",
+          annualRent: 4500000,
+          image:
+            "https://lh3.googleusercontent.com/aida-public/AB6AXuBTWwG9oRTRAnMQUyXnOHcG5uxzINFZyBvSC-bBhCbfFncjfr1s7l-3NS-m1B08lQ5BmkdpXcZBn3wtYpKH8iqv9JUk0X5y4kk3poTeyAMewOPI6rZR8rcdlRlW7k5RPnVPLxkVlHG3zjEQTRyrtZl3lJ2ELksr2lchj0Oo_1jDhuueAcLf8dpOxhsWGnK-rpWa_-CrTb9TTlR2AFM4_3i94TCUK17uschB4WFJt4pclXIZT4g3wkkfSZA157mTAr64HjrgxeoBKaUY",
+          features: ["2 Beds", "2 Baths", "High-Speed"],
+        },
+        {
+          id: "l2",
+          title: "Maitama SkyLofts",
+          location: "Maitama District, Abuja",
+          area: "Abuja",
+          type: "Studio",
+          priceBand: "High",
+          annualRent: 7200000,
+          image:
+            "https://lh3.googleusercontent.com/aida-public/AB6AXuA46thRe-hGveS4YfOUXbN0KPw-AMUkujaFMyGE0RTqqfaNTiurxzST62Q3O7eOrh-P3t-wsL0ixMxSiTmFlzGWvu241nsGlIBSJiJU4-OH-g8AAZMrv0-mNURofxWKpAYqXZAcA5_-31AHkL3yrx-KplIpaPY4WJ42czbH1ADHxc8Ju07u1bNoi4XfDzVxlOs7FRsyNuodFeWrTHUGqa-Jvyg14bSzw5sYTn4Y_0tQJAsY1M9IEXSoBxir2nFYkbyDtpWamqIkrSay",
+          features: ["Studio", "24/7 Power", "Pool"],
+        },
+        {
+          id: "l3",
+          title: "Victoria House Collective",
+          location: "Victoria Island, Lagos",
+          area: "VI",
+          type: "1 Bed",
+          priceBand: "Mid",
+          annualRent: 5100000,
+          image:
+            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+          features: ["1 Bed", "1 Bath", "Gym"],
+        },
+        {
+          id: "l4",
+          title: "Yaba Commons",
+          location: "Yaba, Lagos",
+          area: "Yaba",
+          type: "Shared",
+          priceBand: "Low",
+          annualRent: 2200000,
+          image:
+            "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80",
+          features: ["Shared", "2 Baths", "Study Rooms"],
+        },
+      ];
+
+      const roommates = [
+        { id: "r1", name: "Amaka N.", school: "UNILAG", budget: "NGN 2.5m - 4m", match: 91, area: "Lekki" },
+        { id: "r2", name: "Tunde A.", school: "Baze University", budget: "NGN 5m - 8m", match: 86, area: "Abuja" },
+        { id: "r3", name: "Ruth O.", school: "LASU", budget: "NGN 2m - 3m", match: 79, area: "Yaba" },
+      ];
+
+      const pageHost = document.getElementById("page-host");
+      const tabs = Array.from(document.querySelectorAll(".tab"));
+
+      function formatMoney(number) {
+        return "NGN " + number.toLocaleString("en-US") + "/yr";
+      }
+
+      function cycleFilter(key) {
+        const options = {
+          price: ["Any", "Low", "Mid", "High"],
+          area: ["All", "Lekki", "VI", "Abuja", "Yaba"],
+          type: ["Any", "Studio", "1 Bed", "2 Beds", "Shared"],
+        }[key];
+        const currentIndex = options.indexOf(appState.filters[key]);
+        appState.filters[key] = options[(currentIndex + 1) % options.length];
+        render();
+      }
+
+      function getFilteredListings() {
+        return listings.filter((listing) => {
+          const q = appState.search.trim().toLowerCase();
+          const bySearch =
+            q === "" ||
+            listing.title.toLowerCase().includes(q) ||
+            listing.location.toLowerCase().includes(q) ||
+            listing.area.toLowerCase().includes(q);
+          const byPrice = appState.filters.price === "Any" || listing.priceBand === appState.filters.price;
+          const byArea = appState.filters.area === "All" || listing.area === appState.filters.area;
+          const byType = appState.filters.type === "Any" || listing.type === appState.filters.type;
+          return bySearch && byPrice && byArea && byType;
+        });
+      }
+
+      function toggleSave(listingId) {
+        if (appState.savedIds.has(listingId)) {
+          appState.savedIds.delete(listingId);
+        } else {
+          appState.savedIds.add(listingId);
+        }
+        render();
+      }
+
+      function bookListing(listingId) {
+        const date = new Date();
+        date.setDate(date.getDate() + 3 + appState.bookings.length);
+        const booking = {
+          id: "b" + (appState.bookings.length + 1),
+          listingId,
+          date: date.toISOString().slice(0, 10),
+          slot: "15:00",
+          status: "Pending",
+        };
+        appState.bookings.unshift(booking);
+        appState.tab = "bookings";
+        render();
+      }
+
+      function cancelBooking(bookingId) {
+        appState.bookings = appState.bookings.filter((b) => b.id !== bookingId);
+        render();
+      }
+
+      function requestMatch(roommateId) {
+        appState.matchRequests.add(roommateId);
+        render();
+      }
+
+      function homeView() {
+        const results = getFilteredListings();
+        const listingMarkup = results
+          .map((listing) => {
+            const saved = appState.savedIds.has(listing.id);
+            return `
+            <article class="card">
+              <div class="media">
+                <img src="${listing.image}" alt="${listing.title}" />
+                <div class="verified">
+                  <span class="material-symbols-outlined" style="font-size:12px;font-variation-settings:'FILL' 1;">verified</span>
+                  Verified Landlord
+                </div>
+                <div class="price">${formatMoney(listing.annualRent)}</div>
+              </div>
+              <div class="card-body">
+                <h3 class="title">${listing.title}</h3>
+                <p class="meta">
+                  <span class="material-symbols-outlined" style="font-size:16px;">location_on</span>
+                  ${listing.location}
+                </p>
+                <div class="facts">
+                  ${listing.features
+                    .map(
+                      (feature, index) => `
+                    <div class="fact">
+                      <span class="material-symbols-outlined" style="font-size:16px;color:var(--secondary);">
+                        ${index === 0 ? "bed" : index === 1 ? "bathtub" : "bolt"}
+                      </span>
+                      ${feature}
+                    </div>
+                  `
+                    )
+                    .join("")}
+                </div>
+                <div class="card-actions">
+                  <button class="ghost-btn" data-action="save" data-id="${listing.id}">
+                    ${saved ? "Saved" : "Save"}
+                  </button>
+                  <button class="solid-btn" data-action="book" data-id="${listing.id}">Book Viewing</button>
+                </div>
+              </div>
+            </article>
+          `;
+          })
+          .join("");
+
+        return `
+          <div class="desktop-layout">
+            <section>
+              <h1 class="hero-title">
+                Curated Living for the <span class="accent">Sovereign Scholar.</span>
+              </h1>
+              <div class="search-sheet">
+                <label class="search-row">
+                  <span class="material-symbols-outlined" style="font-size:20px;color:var(--muted);">search</span>
+                  <input id="search-input" value="${appState.search}" placeholder="Search Lekki, Victoria Island, Abuja..." />
+                </label>
+                <div class="chips">
+                  <button class="chip ${appState.filters.price !== "Any" ? "is-active" : ""}" data-filter="price">
+                    <span class="material-symbols-outlined" style="font-size:16px;">payments</span>
+                    Price: ${appState.filters.price}
+                  </button>
+                  <button class="chip ${appState.filters.area !== "All" ? "is-active" : ""}" data-filter="area">
+                    <span class="material-symbols-outlined" style="font-size:16px;">location_on</span>
+                    Area: ${appState.filters.area}
+                  </button>
+                  <button class="chip ${appState.filters.type !== "Any" ? "is-active" : ""}" data-filter="type">
+                    <span class="material-symbols-outlined" style="font-size:16px;">apartment</span>
+                    Type: ${appState.filters.type}
+                  </button>
+                </div>
+                <button class="discover" id="discover">Discover</button>
+                <div class="status-row">${results.length} result${results.length === 1 ? "" : "s"} found</div>
+              </div>
+            </section>
+            <section>
+              <div class="listing-stack">
+                ${listingMarkup || `<div class="panel empty">No listing matches this filter yet.</div>`}
+              </div>
+            </section>
+          </div>
+        `;
+      }
+
+      function bookingsView() {
+        const markup = appState.bookings
+          .map((booking) => {
+            const listing = listings.find((item) => item.id === booking.listingId);
+            if (!listing) return "";
+            const dateLabel = new Date(booking.date + "T10:00:00").toLocaleDateString("en-GB", {
+              weekday: "short",
+              day: "numeric",
+              month: "short",
+            });
+            const badgeClass = booking.status === "Confirmed" ? "ok" : "warn";
+            return `
+              <article class="panel">
+                <div class="row">
+                  <h3 class="title" style="font-size:1.02rem;">${listing.title}</h3>
+                  <span class="badge ${badgeClass}">${booking.status}</span>
+                </div>
+                <p class="meta">${listing.location}</p>
+                <div class="row" style="margin-top:8px;">
+                  <div class="muted">${dateLabel} at ${booking.slot}</div>
+                  <button class="ghost-btn" data-action="cancel-booking" data-id="${booking.id}">Cancel</button>
+                </div>
+              </article>
+            `;
+          })
+          .join("");
+        return `
+          <section>
+            <h2 class="section-title">Bookings</h2>
+            ${markup || `<div class="panel empty">No bookings yet. Book a viewing from Home.</div>`}
+          </section>
+        `;
+      }
+
+      function matchingView() {
+        const items = roommates
+          .map((mate) => {
+            const requested = appState.matchRequests.has(mate.id);
+            return `
+              <article class="panel">
+                <div class="row">
+                  <h3 class="title" style="font-size:1.02rem;">${mate.name}</h3>
+                  <span class="badge ok">${mate.match}% Match</span>
+                </div>
+                <p class="muted" style="margin:6px 0 0;">${mate.school} - Prefers ${mate.area}</p>
+                <p class="muted" style="margin:4px 0 0;">Budget: ${mate.budget}</p>
+                <div style="margin-top:10px;">
+                  <button class="${requested ? "ghost-btn" : "solid-btn"}" data-action="match" data-id="${mate.id}">
+                    ${requested ? "Requested" : "Request Match"}
+                  </button>
+                </div>
+              </article>
+            `;
+          })
+          .join("");
+        return `
+          <section>
+            <h2 class="section-title">Roommate Matching</h2>
+            <div class="panel">
+              <div class="row">
+                <div>
+                  <strong>Profile Strength</strong>
+                  <div class="muted">Add interests and schedule for stronger matches.</div>
+                </div>
+                <span class="badge warn">72%</span>
+              </div>
+            </div>
+            <div style="margin-top:12px;">${items}</div>
+          </section>
+        `;
+      }
+
+      function profileView() {
+        return `
+          <section>
+            <h2 class="section-title">Profile</h2>
+            <article class="panel">
+              <div class="row">
+                <div>
+                  <strong style="font-size:1.04rem;">Korede A.</strong>
+                  <div class="muted">Undergraduate - University of Lagos</div>
+                </div>
+                <span class="badge ok">Verified</span>
+              </div>
+            </article>
+            <article class="panel">
+              <div class="row">
+                <span>Saved Listings</span>
+                <strong>${appState.savedIds.size}</strong>
+              </div>
+              <div class="row" style="margin-top:8px;">
+                <span>Active Bookings</span>
+                <strong>${appState.bookings.length}</strong>
+              </div>
+              <div class="row" style="margin-top:8px;">
+                <span>Match Requests</span>
+                <strong>${appState.matchRequests.size}</strong>
+              </div>
+            </article>
+            <article class="panel">
+              <strong>Preferences</strong>
+              <p class="muted" style="margin:8px 0 0;">Area: Lekki or VI</p>
+              <p class="muted" style="margin:4px 0 0;">Budget: NGN 3m - 6m /yr</p>
+              <p class="muted" style="margin:4px 0 0;">Room Type: Studio or 1 Bed</p>
+            </article>
+          </section>
+        `;
+      }
+
+      function setActiveTab() {
+        tabs.forEach((tab) => {
+          tab.classList.toggle("active", tab.dataset.tab === appState.tab);
+        });
+      }
+
+      function render() {
+        setActiveTab();
+        if (appState.tab === "home") pageHost.innerHTML = homeView();
+        if (appState.tab === "bookings") pageHost.innerHTML = bookingsView();
+        if (appState.tab === "matching") pageHost.innerHTML = matchingView();
+        if (appState.tab === "profile") pageHost.innerHTML = profileView();
+
+        const searchInput = document.getElementById("search-input");
+        if (searchInput) {
+          searchInput.addEventListener("input", (event) => {
+            appState.search = event.target.value;
+            render();
+          });
+        }
+
+        const discoverButton = document.getElementById("discover");
+        if (discoverButton) {
+          discoverButton.addEventListener("click", () => render());
+        }
+
+        document.querySelectorAll("[data-filter]").forEach((button) => {
+          button.addEventListener("click", () => {
+            cycleFilter(button.dataset.filter);
+          });
+        });
+
+        document.querySelectorAll("[data-action='save']").forEach((button) => {
+          button.addEventListener("click", () => toggleSave(button.dataset.id));
+        });
+
+        document.querySelectorAll("[data-action='book']").forEach((button) => {
+          button.addEventListener("click", () => bookListing(button.dataset.id));
+        });
+
+        document.querySelectorAll("[data-action='cancel-booking']").forEach((button) => {
+          button.addEventListener("click", () => cancelBooking(button.dataset.id));
+        });
+
+        document.querySelectorAll("[data-action='match']").forEach((button) => {
+          button.addEventListener("click", () => requestMatch(button.dataset.id));
+        });
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          appState.tab = tab.dataset.tab;
+          render();
+        });
+      });
+
+      render();
+    </script>
+  </body>
+</html>
