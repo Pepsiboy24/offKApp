@@ -353,6 +353,52 @@
         padding: 26px 10px;
       }
 
+      .toolbar {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .text-btn {
+        border: 0;
+        border-radius: 10px;
+        background: #ebe6de;
+        color: var(--text);
+        padding: 8px 10px;
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+
+      .text-input {
+        width: 100%;
+        border: 0;
+        border-radius: 10px;
+        background: #f2ece4;
+        color: var(--text);
+        padding: 9px 10px;
+        font: inherit;
+        margin-top: 8px;
+      }
+
+      .toast-root {
+        position: fixed;
+        right: 10px;
+        top: 66px;
+        z-index: 30;
+        display: grid;
+        gap: 8px;
+      }
+
+      .toast {
+        background: rgba(22, 32, 24, 0.94);
+        color: #fff;
+        border-radius: 10px;
+        padding: 8px 10px;
+        font-size: 0.82rem;
+        box-shadow: 0 12px 22px rgba(0, 0, 0, 0.2);
+      }
+
       .bottom-nav {
         position: fixed;
         left: 50%;
@@ -444,6 +490,7 @@
       </header>
 
       <main id="page-host" class="page"></main>
+      <div id="toast-root" class="toast-root" aria-live="polite"></div>
 
       <nav class="bottom-nav" aria-label="Primary">
         <button class="tab active" data-tab="home">
@@ -466,21 +513,10 @@
     </div>
 
     <script>
-      const appState = {
-        tab: "home",
-        search: "",
-        filters: {
-          price: "Any",
-          area: "All",
-          type: "Any",
-        },
-        savedIds: new Set(),
-        bookings: [
-          { id: "b1", listingId: "l2", date: "2026-04-24", slot: "16:00", status: "Confirmed" },
-          { id: "b2", listingId: "l3", date: "2026-04-28", slot: "13:30", status: "Pending" },
-        ],
-        matchRequests: new Set(),
-      };
+      const STORAGE_KEY = "offkapp_state_v2";
+      const toastRoot = document.getElementById("toast-root");
+      const pageHost = document.getElementById("page-host");
+      const tabs = Array.from(document.querySelectorAll(".tab"));
 
       const listings = [
         {
@@ -515,8 +551,7 @@
           type: "1 Bed",
           priceBand: "Mid",
           annualRent: 5100000,
-          image:
-            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+          image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
           features: ["1 Bed", "1 Bath", "Gym"],
         },
         {
@@ -527,8 +562,7 @@
           type: "Shared",
           priceBand: "Low",
           annualRent: 2200000,
-          image:
-            "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80",
+          image: "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80",
           features: ["Shared", "2 Baths", "Study Rooms"],
         },
       ];
@@ -539,11 +573,84 @@
         { id: "r3", name: "Ruth O.", school: "LASU", budget: "NGN 2m - 3m", match: 79, area: "Yaba" },
       ];
 
-      const pageHost = document.getElementById("page-host");
-      const tabs = Array.from(document.querySelectorAll(".tab"));
+      function getDefaultState() {
+        return {
+          tab: "home",
+          search: "",
+          filters: { price: "Any", area: "All", type: "Any" },
+          savedIds: [],
+          bookings: [
+            { id: "b1", listingId: "l2", date: "2026-04-24", slot: "16:00", status: "Confirmed" },
+            { id: "b2", listingId: "l3", date: "2026-04-28", slot: "13:30", status: "Pending" },
+          ],
+          matchRequests: [],
+          profile: {
+            name: "Korede A.",
+            school: "University of Lagos",
+            level: "Undergraduate",
+            preferredArea: "Lekki or VI",
+            budget: "NGN 3m - 6m /yr",
+            roomType: "Studio or 1 Bed",
+          },
+        };
+      }
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return getDefaultState();
+          const parsed = JSON.parse(raw);
+          const defaults = getDefaultState();
+          return {
+            ...defaults,
+            ...parsed,
+            filters: { ...defaults.filters, ...(parsed.filters || {}) },
+            profile: { ...defaults.profile, ...(parsed.profile || {}) },
+            savedIds: Array.isArray(parsed.savedIds) ? parsed.savedIds : defaults.savedIds,
+            matchRequests: Array.isArray(parsed.matchRequests) ? parsed.matchRequests : defaults.matchRequests,
+            bookings: Array.isArray(parsed.bookings) ? parsed.bookings : defaults.bookings,
+          };
+        } catch (error) {
+          return getDefaultState();
+        }
+      }
+
+      const appState = loadState();
+
+      function saveState() {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify({
+            ...appState,
+            tab: appState.tab,
+            savedIds: appState.savedIds,
+            matchRequests: appState.matchRequests,
+          })
+        );
+      }
+
+      function showToast(message) {
+        const node = document.createElement("div");
+        node.className = "toast";
+        node.textContent = message;
+        toastRoot.appendChild(node);
+        setTimeout(() => {
+          if (node.parentNode) node.parentNode.removeChild(node);
+        }, 1800);
+      }
+
+      function setTab(nextTab) {
+        appState.tab = nextTab;
+        window.location.hash = nextTab;
+        saveState();
+      }
 
       function formatMoney(number) {
         return "NGN " + number.toLocaleString("en-US") + "/yr";
+      }
+
+      function findListingById(id) {
+        return listings.find((listing) => listing.id === id);
       }
 
       function cycleFilter(key) {
@@ -554,7 +661,16 @@
         }[key];
         const currentIndex = options.indexOf(appState.filters[key]);
         appState.filters[key] = options[(currentIndex + 1) % options.length];
+        saveState();
         render();
+      }
+
+      function clearFilters() {
+        appState.search = "";
+        appState.filters = { price: "Any", area: "All", type: "Any" };
+        saveState();
+        render();
+        showToast("Filters cleared");
       }
 
       function getFilteredListings() {
@@ -573,15 +689,24 @@
       }
 
       function toggleSave(listingId) {
-        if (appState.savedIds.has(listingId)) {
-          appState.savedIds.delete(listingId);
+        const index = appState.savedIds.indexOf(listingId);
+        if (index >= 0) {
+          appState.savedIds.splice(index, 1);
+          showToast("Removed from saved");
         } else {
-          appState.savedIds.add(listingId);
+          appState.savedIds.push(listingId);
+          showToast("Saved listing");
         }
+        saveState();
         render();
       }
 
       function bookListing(listingId) {
+        const duplicate = appState.bookings.some((booking) => booking.listingId === listingId && booking.status !== "Cancelled");
+        if (duplicate) {
+          showToast("Viewing already scheduled");
+          return;
+        }
         const date = new Date();
         date.setDate(date.getDate() + 3 + appState.bookings.length);
         const booking = {
@@ -592,25 +717,56 @@
           status: "Pending",
         };
         appState.bookings.unshift(booking);
-        appState.tab = "bookings";
+        setTab("bookings");
+        saveState();
         render();
+        showToast("Viewing booked");
       }
 
       function cancelBooking(bookingId) {
-        appState.bookings = appState.bookings.filter((b) => b.id !== bookingId);
+        appState.bookings = appState.bookings.filter((booking) => booking.id !== bookingId);
+        saveState();
+        render();
+        showToast("Booking cancelled");
+      }
+
+      function confirmBooking(bookingId) {
+        appState.bookings = appState.bookings.map((booking) =>
+          booking.id === bookingId ? { ...booking, status: "Confirmed" } : booking
+        );
+        saveState();
+        render();
+        showToast("Booking confirmed");
+      }
+
+      function toggleMatchRequest(roommateId) {
+        const index = appState.matchRequests.indexOf(roommateId);
+        if (index >= 0) {
+          appState.matchRequests.splice(index, 1);
+          showToast("Match request withdrawn");
+        } else {
+          appState.matchRequests.push(roommateId);
+          showToast("Match request sent");
+        }
+        saveState();
         render();
       }
 
-      function requestMatch(roommateId) {
-        appState.matchRequests.add(roommateId);
+      function resetAllData() {
+        const defaults = getDefaultState();
+        Object.keys(defaults).forEach((key) => {
+          appState[key] = defaults[key];
+        });
+        saveState();
         render();
+        showToast("Demo data reset");
       }
 
       function homeView() {
         const results = getFilteredListings();
         const listingMarkup = results
           .map((listing) => {
-            const saved = appState.savedIds.has(listing.id);
+            const saved = appState.savedIds.includes(listing.id);
             return `
             <article class="card">
               <div class="media">
@@ -642,9 +798,7 @@
                     .join("")}
                 </div>
                 <div class="card-actions">
-                  <button class="ghost-btn" data-action="save" data-id="${listing.id}">
-                    ${saved ? "Saved" : "Save"}
-                  </button>
+                  <button class="ghost-btn" data-action="save" data-id="${listing.id}">${saved ? "Saved" : "Save"}</button>
                   <button class="solid-btn" data-action="book" data-id="${listing.id}">Book Viewing</button>
                 </div>
               </div>
@@ -656,9 +810,7 @@
         return `
           <div class="desktop-layout">
             <section>
-              <h1 class="hero-title">
-                Curated Living for the <span class="accent">Sovereign Scholar.</span>
-              </h1>
+              <h1 class="hero-title">Curated Living for the <span class="accent">Sovereign Scholar.</span></h1>
               <div class="search-sheet">
                 <label class="search-row">
                   <span class="material-symbols-outlined" style="font-size:20px;color:var(--muted);">search</span>
@@ -678,15 +830,14 @@
                     Type: ${appState.filters.type}
                   </button>
                 </div>
-                <button class="discover" id="discover">Discover</button>
+                <button class="discover" data-action="discover">Discover</button>
+                <div class="toolbar">
+                  <button class="text-btn" data-action="clear-filters">Clear Filters</button>
+                </div>
                 <div class="status-row">${results.length} result${results.length === 1 ? "" : "s"} found</div>
               </div>
             </section>
-            <section>
-              <div class="listing-stack">
-                ${listingMarkup || `<div class="panel empty">No listing matches this filter yet.</div>`}
-              </div>
-            </section>
+            <section><div class="listing-stack">${listingMarkup || `<div class="panel empty">No listing matches this filter yet.</div>`}</div></section>
           </div>
         `;
       }
@@ -694,7 +845,7 @@
       function bookingsView() {
         const markup = appState.bookings
           .map((booking) => {
-            const listing = listings.find((item) => item.id === booking.listingId);
+            const listing = findListingById(booking.listingId);
             if (!listing) return "";
             const dateLabel = new Date(booking.date + "T10:00:00").toLocaleDateString("en-GB", {
               weekday: "short",
@@ -711,24 +862,22 @@
                 <p class="meta">${listing.location}</p>
                 <div class="row" style="margin-top:8px;">
                   <div class="muted">${dateLabel} at ${booking.slot}</div>
-                  <button class="ghost-btn" data-action="cancel-booking" data-id="${booking.id}">Cancel</button>
+                </div>
+                <div class="toolbar">
+                  ${booking.status === "Pending" ? `<button class="text-btn" data-action="confirm-booking" data-id="${booking.id}">Confirm</button>` : ""}
+                  <button class="text-btn" data-action="cancel-booking" data-id="${booking.id}">Cancel</button>
                 </div>
               </article>
             `;
           })
           .join("");
-        return `
-          <section>
-            <h2 class="section-title">Bookings</h2>
-            ${markup || `<div class="panel empty">No bookings yet. Book a viewing from Home.</div>`}
-          </section>
-        `;
+        return `<section><h2 class="section-title">Bookings</h2>${markup || `<div class="panel empty">No bookings yet. Book a viewing from Home.</div>`}</section>`;
       }
 
       function matchingView() {
         const items = roommates
           .map((mate) => {
-            const requested = appState.matchRequests.has(mate.id);
+            const requested = appState.matchRequests.includes(mate.id);
             return `
               <article class="panel">
                 <div class="row">
@@ -737,9 +886,9 @@
                 </div>
                 <p class="muted" style="margin:6px 0 0;">${mate.school} - Prefers ${mate.area}</p>
                 <p class="muted" style="margin:4px 0 0;">Budget: ${mate.budget}</p>
-                <div style="margin-top:10px;">
-                  <button class="${requested ? "ghost-btn" : "solid-btn"}" data-action="match" data-id="${mate.id}">
-                    ${requested ? "Requested" : "Request Match"}
+                <div class="toolbar">
+                  <button class="${requested ? "text-btn" : "solid-btn"}" data-action="match" data-id="${mate.id}">
+                    ${requested ? "Withdraw Request" : "Request Match"}
                   </button>
                 </div>
               </article>
@@ -764,37 +913,41 @@
       }
 
       function profileView() {
+        const savedMarkup = appState.savedIds
+          .map((id) => findListingById(id))
+          .filter(Boolean)
+          .map((item) => `<p class="muted" style="margin:6px 0 0;">- ${item.title}, ${item.location}</p>`)
+          .join("");
         return `
           <section>
             <h2 class="section-title">Profile</h2>
             <article class="panel">
               <div class="row">
                 <div>
-                  <strong style="font-size:1.04rem;">Korede A.</strong>
-                  <div class="muted">Undergraduate - University of Lagos</div>
+                  <strong style="font-size:1.04rem;">${appState.profile.name}</strong>
+                  <div class="muted">${appState.profile.level} - ${appState.profile.school}</div>
                 </div>
                 <span class="badge ok">Verified</span>
               </div>
             </article>
             <article class="panel">
-              <div class="row">
-                <span>Saved Listings</span>
-                <strong>${appState.savedIds.size}</strong>
-              </div>
-              <div class="row" style="margin-top:8px;">
-                <span>Active Bookings</span>
-                <strong>${appState.bookings.length}</strong>
-              </div>
-              <div class="row" style="margin-top:8px;">
-                <span>Match Requests</span>
-                <strong>${appState.matchRequests.size}</strong>
-              </div>
+              <div class="row"><span>Saved Listings</span><strong>${appState.savedIds.length}</strong></div>
+              <div class="row" style="margin-top:8px;"><span>Active Bookings</span><strong>${appState.bookings.length}</strong></div>
+              <div class="row" style="margin-top:8px;"><span>Match Requests</span><strong>${appState.matchRequests.length}</strong></div>
             </article>
             <article class="panel">
               <strong>Preferences</strong>
-              <p class="muted" style="margin:8px 0 0;">Area: Lekki or VI</p>
-              <p class="muted" style="margin:4px 0 0;">Budget: NGN 3m - 6m /yr</p>
-              <p class="muted" style="margin:4px 0 0;">Room Type: Studio or 1 Bed</p>
+              <input class="text-input" id="pref-area" value="${appState.profile.preferredArea}" placeholder="Preferred area" />
+              <input class="text-input" id="pref-budget" value="${appState.profile.budget}" placeholder="Budget" />
+              <input class="text-input" id="pref-type" value="${appState.profile.roomType}" placeholder="Room type" />
+              <div class="toolbar">
+                <button class="text-btn" data-action="save-profile">Save Preferences</button>
+                <button class="text-btn" data-action="reset-all">Reset Demo Data</button>
+              </div>
+            </article>
+            <article class="panel">
+              <strong>Saved Homes</strong>
+              ${savedMarkup || `<p class="muted" style="margin:8px 0 0;">No saved listings yet.</p>`}
             </article>
           </section>
         `;
@@ -812,50 +965,76 @@
         if (appState.tab === "bookings") pageHost.innerHTML = bookingsView();
         if (appState.tab === "matching") pageHost.innerHTML = matchingView();
         if (appState.tab === "profile") pageHost.innerHTML = profileView();
-
-        const searchInput = document.getElementById("search-input");
-        if (searchInput) {
-          searchInput.addEventListener("input", (event) => {
-            appState.search = event.target.value;
-            render();
-          });
-        }
-
-        const discoverButton = document.getElementById("discover");
-        if (discoverButton) {
-          discoverButton.addEventListener("click", () => render());
-        }
-
-        document.querySelectorAll("[data-filter]").forEach((button) => {
-          button.addEventListener("click", () => {
-            cycleFilter(button.dataset.filter);
-          });
-        });
-
-        document.querySelectorAll("[data-action='save']").forEach((button) => {
-          button.addEventListener("click", () => toggleSave(button.dataset.id));
-        });
-
-        document.querySelectorAll("[data-action='book']").forEach((button) => {
-          button.addEventListener("click", () => bookListing(button.dataset.id));
-        });
-
-        document.querySelectorAll("[data-action='cancel-booking']").forEach((button) => {
-          button.addEventListener("click", () => cancelBooking(button.dataset.id));
-        });
-
-        document.querySelectorAll("[data-action='match']").forEach((button) => {
-          button.addEventListener("click", () => requestMatch(button.dataset.id));
-        });
       }
 
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          appState.tab = tab.dataset.tab;
-          render();
-        });
-      });
+      function onTabClick(event) {
+        const tab = event.target.closest("[data-tab]");
+        if (!tab) return;
+        setTab(tab.dataset.tab);
+        render();
+      }
 
+      function onInputChange(event) {
+        if (event.target.id === "search-input") {
+          appState.search = event.target.value;
+          saveState();
+          render();
+        }
+      }
+
+      function onPageAction(event) {
+        const actionButton = event.target.closest("[data-action]");
+        if (!actionButton) return;
+        const id = actionButton.dataset.id;
+        const action = actionButton.dataset.action;
+        if (action === "save") toggleSave(id);
+        if (action === "book") bookListing(id);
+        if (action === "cancel-booking") cancelBooking(id);
+        if (action === "confirm-booking") confirmBooking(id);
+        if (action === "match") toggleMatchRequest(id);
+        if (action === "clear-filters") clearFilters();
+        if (action === "discover") render();
+        if (action === "reset-all") resetAllData();
+        if (action === "save-profile") {
+          const area = document.getElementById("pref-area");
+          const budget = document.getElementById("pref-budget");
+          const type = document.getElementById("pref-type");
+          appState.profile.preferredArea = area ? area.value.trim() : appState.profile.preferredArea;
+          appState.profile.budget = budget ? budget.value.trim() : appState.profile.budget;
+          appState.profile.roomType = type ? type.value.trim() : appState.profile.roomType;
+          saveState();
+          showToast("Preferences updated");
+          render();
+        }
+      }
+
+      function onFilterClick(event) {
+        const filterButton = event.target.closest("[data-filter]");
+        if (!filterButton) return;
+        cycleFilter(filterButton.dataset.filter);
+      }
+
+      function onHashChange() {
+        const next = window.location.hash.replace("#", "");
+        const allowed = ["home", "bookings", "matching", "profile"];
+        if (allowed.includes(next)) {
+          appState.tab = next;
+          saveState();
+          render();
+        }
+      }
+
+      tabs.forEach((tab) => tab.addEventListener("click", onTabClick));
+      pageHost.addEventListener("click", onPageAction);
+      pageHost.addEventListener("click", onFilterClick);
+      pageHost.addEventListener("input", onInputChange);
+      window.addEventListener("hashchange", onHashChange);
+
+      if (window.location.hash) {
+        onHashChange();
+      } else {
+        window.location.hash = appState.tab;
+      }
       render();
     </script>
   </body>
