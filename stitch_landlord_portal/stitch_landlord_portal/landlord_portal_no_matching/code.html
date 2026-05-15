@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Avenue Scholar | Landlord Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-fixed": "#241a00",
+                        "tertiary-container": "#cba72f",
+                        "surface": "#fdf9f3",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e6e2dc",
+                        "tertiary-fixed": "#ffe088",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#75ac94",
+                        "on-surface-variant": "#404944",
+                        "surface-container-high": "#ebe8e2",
+                        "surface-container-highest": "#e6e2dc",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#31302d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#76320f",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c0c9c2",
+                        "primary": "#00281c",
+                        "secondary-container": "#fe9e72",
+                        "on-primary-fixed": "#002116",
+                        "surface-bright": "#fdf9f3",
+                        "surface-dim": "#dddad4",
+                        "secondary-fixed": "#ffdbcd",
+                        "inverse-on-surface": "#f4f0ea",
+                        "primary-container": "#00402e",
+                        "on-secondary-container": "#773310",
+                        "secondary": "#944925",
+                        "tertiary": "#735c00",
+                        "on-secondary": "#ffffff",
+                        "outline": "#707974",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#17503d",
+                        "on-tertiary-container": "#4e3d00",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-secondary-fixed": "#360f00",
+                        "background": "#fdf9f3",
+                        "inverse-primary": "#9ad2b9",
+                        "primary-fixed": "#b6efd5",
+                        "surface-tint": "#326854",
+                        "on-background": "#1c1c18",
+                        "primary-fixed-dim": "#9ad2b9",
+                        "surface-container-low": "#f7f3ed",
+                        "on-surface": "#1c1c18",
+                        "surface-container": "#f1ede7",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#ffb596",
+                        "tertiary-fixed-dim": "#e9c349"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .adire-texture {
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.03) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<header class="bg-emerald-950/80 dark:bg-emerald-950/90 backdrop-blur-xl text-emerald-50 sticky top-0 z-50 shadow-none">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-full mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-emerald-50">menu</span>
+<h1 class="text-2xl font-black text-emerald-50 tracking-[-0.02em] font-['Manrope']">Avenue Scholar</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1 bg-tertiary-fixed rounded-full text-on-tertiary-fixed shadow-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[11px] font-bold tracking-wider uppercase">Verified Partner</span>
+</div>
+<span class="material-symbols-outlined text-emerald-50">notifications</span>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 pt-8 space-y-10">
+<section class="grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
+<div class="md:col-span-8">
+<h2 class="text-display-lg font-extrabold tracking-tight text-primary leading-tight mb-2" style="font-size: 3.5rem;">Welcome back, Adebayo.</h2>
+<p class="text-body-lg text-on-surface-variant max-w-xl leading-relaxed">Your Lagos portfolio is performing 12% above average this semester. You have 3 new student inquiries awaiting review.</p>
+</div>
+<div class="md:col-span-4 flex justify-end">
+<button class="bg-secondary text-on-secondary px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined">add_home</span>
+                    List New Property
+                </button>
+</div>
+</section>
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-primary-container adire-texture p-8 rounded-[2rem] text-white flex flex-col justify-between min-h-[220px]">
+<div>
+<p class="text-emerald-100/70 text-label-md uppercase tracking-[0.1em] font-bold">Total Earnings</p>
+<h3 class="text-4xl font-extrabold mt-2">₦12.4M</h3>
+</div>
+<div class="flex items-center gap-2 text-emerald-100/90 text-sm">
+<span class="material-symbols-outlined text-amber-400">trending_up</span>
+<span>+14.2% from last cycle</span>
+</div>
+</div>
+<div class="bg-surface-container-high p-8 rounded-[2rem] flex flex-col justify-between min-h-[220px]">
+<div>
+<p class="text-on-surface-variant text-label-md uppercase tracking-[0.1em] font-bold">Occupancy Rate</p>
+<h3 class="text-4xl font-extrabold mt-2 text-primary">94%</h3>
+</div>
+<div class="flex gap-1">
+<div class="h-1.5 flex-1 rounded-full bg-primary"></div>
+<div class="h-1.5 flex-1 rounded-full bg-primary"></div>
+<div class="h-1.5 flex-1 rounded-full bg-primary"></div>
+<div class="h-1.5 w-8 rounded-full bg-outline-variant"></div>
+</div>
+</div>
+<div class="bg-secondary-container p-8 rounded-[2rem] text-on-secondary-container flex flex-col justify-between min-h-[220px]">
+<div>
+<p class="text-on-secondary-container/70 text-label-md uppercase tracking-[0.1em] font-bold">Active Inquiries</p>
+<h3 class="text-4xl font-extrabold mt-2">08</h3>
+</div>
+<div class="flex -space-x-3">
+<img class="w-10 h-10 rounded-full border-2 border-secondary-container object-cover" data-alt="Portrait of a young West African female student smiling in a library environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnE96Q91YiCoQClyL229INs-jPHYxFSRN6eKfSv1cnmAw76s74oEzdFbWT3lncRGItVqhLfSPx9yMt5i5J31fSoEqw49ll7oAxG6edoE3L0do0XoakX3Kb6ooNpBDuo8ELJffcWBvW3mY8vIXLPj5-QscLsQ_QzVZWZg0NcdA-HArcRqI5C7JmiZOCApj7HXdEQ0zyA2FCUs0mA_-mSEOHoCmik5zDpjNXUMYBqdquB2zE_Nf2GKfM66-TGBjjL2k42DgvG6ZfqZ9e"/>
+<img class="w-10 h-10 rounded-full border-2 border-secondary-container object-cover" data-alt="Portrait of a young Nigerian male student wearing contemporary professional attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq-ZnFxSBfS-MyQLNFvuTg_sRyhFnorGZ_u5Z8wpcr0xHgs4Ka6h4oP-g9ygQXxvi8NnhcASvOD3Qg9uW10QHhIyhx2SM6NjruPcynNqVztnHT-DBRbcDpHVSp66Ep0USLV4SBfqBdXn9EqD7RGfv2G7RuanIF1Tsus_tdZlYqEfSjsrrL_ylC4HJ4OhFsIVVAoLEVKQ3PDOdHHP5MQkKs0PNPEi8jvfODGtlJwVT9rlssId32YpqWtBOjiSbd_8xyKtJJo5f1cynf"/>
+<img class="w-10 h-10 rounded-full border-2 border-secondary-container object-cover" data-alt="Close up of a young student with braided hair smiling in a sunlit outdoor campus setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz6IIepZLTNlGupIjXSaYta4qxhQRwz6-rJWTUb0ZUPHFQf4aXrcw8Vin58pA-vpjGWqIgomHiigXTbAthHBCqYtbcpx9YznmIMO8dz_hWAcm77Q_rT2wrzH231VHSpJpAixg4lWyMVa0upYJsDdx5-5ncltKrl52q1aCNn_2IbXDb1H4JOdzna5iZkM97ChGbdWOxVYwQdhJvw2h4y7bUC7HV1iNT08GFxMHNVrqepXXRUzpt72R87cvSml3PJ2V9zW8-S9OHXkr7"/>
+<div class="w-10 h-10 rounded-full border-2 border-secondary-container bg-on-secondary-container text-secondary-container flex items-center justify-center text-xs font-bold">+5</div>
+</div>
+</div>
+</section>
+<section class="space-y-6">
+<div class="flex justify-between items-center">
+<h3 class="text-2xl font-extrabold text-primary">My Properties</h3>
+<button class="text-primary font-bold text-sm underline decoration-2 underline-offset-4">View All Portfolio</button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="bg-surface-container-low rounded-[2.5rem] overflow-hidden flex flex-col md:flex-row group transition-all">
+<div class="md:w-2/5 relative h-64 md:h-auto overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Luxury modern apartment building in Lagos with glass balconies and tropical landscaping at dusk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ-1Q0NqYvsOjXFxgYl-e-irSRYdqMB02RDhFadFmrTHCplEpktv7Yd2Tf9klGNRqdU2SimKizrU2ZIPMVdzbMYVJ3PLJi4_KbYqAig8NuQ5CBqNYF832wqo4waK52VXC26jqBOPnWqxpEIhn9sSlLZENlW-N2maxfuJp_yCjEKY4xgOCVb9tm7CKRo0YIxhO2xZwNsVgoi2XYEhG9N95IcXGBkuyCiWB3fb5OqsChXOauroszF63V2o94SiXpvsVjnwvBcaPN_sDz"/>
+<div class="absolute top-4 left-4 bg-primary/90 backdrop-blur px-3 py-1 rounded-full text-white text-[10px] font-bold uppercase tracking-widest">Premium Estate</div>
+</div>
+<div class="md:w-3/5 p-8 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-xl font-extrabold text-primary leading-tight">The Lexicon Suites</h4>
+</div>
+<p class="text-on-surface-variant text-sm mb-6 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">location_on</span>
+                                Victoria Island, Lagos
+                            </p>
+<div class="grid grid-cols-3 gap-4 border-t border-surface-container-high pt-6">
+<div>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Rooms</p>
+<p class="text-lg font-bold text-primary">12</p>
+</div>
+<div>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Tenants</p>
+<p class="text-lg font-bold text-primary">11</p>
+</div>
+<div>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Revenue</p>
+<p class="text-lg font-bold text-secondary">₦4.2M</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-[2.5rem] overflow-hidden flex flex-col md:flex-row group transition-all">
+<div class="md:w-2/5 relative h-64 md:h-auto overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Upscale student dormitory featuring terracotta architecture and communal gardens in Abuja" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwEx8yiQkQAywrUqokQgXyrAMTQUsjDrw0toPRe7i9kcOhqKssEWILnKM-w-sSz_1_DDbxTdOTivQpaXOsSWmiNxdkSj1ZR0t2prhStfiJFpJ15AMsIglpsY9eLC67m9cC1ytvea7XVt_5s6LvljDHk24UMz5ColGdwRoTNvx6re9tIQDJTzDdaDzF2j7siucBH_cQstvJ006yCb73RKNKzXIRy2ipFvyeE3W4NBLP1WScEtCnT6VV5_p86CnLCkUwQGWlWMxj5Lsg"/>
+<div class="absolute top-4 left-4 bg-tertiary/90 backdrop-blur px-3 py-1 rounded-full text-white text-[10px] font-bold uppercase tracking-widest">Newly Renovated</div>
+</div>
+<div class="md:w-3/5 p-8 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-xl font-extrabold text-primary leading-tight">Savanna Heights</h4>
+</div>
+<p class="text-on-surface-variant text-sm mb-6 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">location_on</span>
+                                Maitama, Abuja
+                            </p>
+<div class="grid grid-cols-3 gap-4 border-t border-surface-container-high pt-6">
+<div>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Rooms</p>
+<p class="text-lg font-bold text-primary">08</p>
+</div>
+<div>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Tenants</p>
+<p class="text-lg font-bold text-primary">05</p>
+</div>
+<div>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Revenue</p>
+<p class="text-lg font-bold text-secondary">₦2.8M</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="space-y-6">
+<h3 class="text-2xl font-extrabold text-primary">New Inquiries</h3>
+<div class="bg-surface-container-lowest border border-surface-container-high rounded-[2.5rem] p-4">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="text-on-surface-variant text-label-md uppercase tracking-widest">
+<th class="px-6 py-4">Student Name</th>
+<th class="px-6 py-4">Property</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4">Budget</th>
+<th class="px-6 py-4 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y-8 divide-transparent">
+<tr class="bg-surface-container-low rounded-2xl">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-xl object-cover" data-alt="Portrait of a stylish young Nigerian man in a creative studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaV109eVZF2btYm_kPJt66LtCFwkKsAOA3jfrm1Pjzqloy3jKpeINCQcZLlEsXuPRPZq_YhpP03UzNgnCNJh15bt7ryMc3IhWKubt6JUv8ru2jlZqZ6thULUC-AjufW23FFintZKg1rUFD7HqqzWYHUATPYFxrC5IkSwW-Xuz9k0uP123xJCocQdpfa8RroS0nEJj2zOypn3UI1Dy9fCX3FRMuF6ZXxtGZdZBYYRaOnCXvhgxTJNryZK55pe5E5ysIfS5gP4AvRhqJ"/>
+<div>
+<p class="font-extrabold text-primary">Chinedu Okafor</p>
+<p class="text-xs text-on-surface-variant">Unilag Law Student</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-primary font-bold">Lexicon Suites (Room 4B)</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full text-[11px] font-bold">PENDING REVIEW</span>
+</td>
+<td class="px-6 py-4 text-secondary font-extrabold">₦450k / yr</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-sm font-bold hover:bg-primary-container transition-colors">Review Profile</button>
+</td>
+</tr>
+<tr class="bg-surface-container-low rounded-2xl">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-xl object-cover" data-alt="Portrait of a radiant African woman in a contemporary sunlit workspace" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3g7gNJHBvYyRlbFotQWDwXmKMPN-u6UqQOq2ElLNDOtu-QxIP0cWHRKW8PXpgSRa6yBUnWnvVLypV3d_AELdmdb8wiuxsBqsYnMrXYtpXlopGDYgk02W1V5DVGAMQQ9_lFLz1z2EULk2peqBRNW4PETID8EFXoBYUdve5upo0gn7hRGtGpkgvsKx-lVAxlfN7FDnxjclN3cltmBOAfbDsK9FcJiNIRX0PVov9aE79Hqux38O3Tc-F_0uYfKiq6GNfN0GTxEjrj2DN"/>
+<div>
+<p class="font-extrabold text-primary">Aminat Bello</p>
+<p class="text-xs text-on-surface-variant">UI Medicine Student</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-primary font-bold">Savanna Heights (Studio)</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed-variant rounded-full text-[11px] font-bold">DOCS SUBMITTED</span>
+</td>
+<td class="px-6 py-4 text-secondary font-extrabold">₦600k / yr</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-sm font-bold hover:bg-primary-container transition-colors">Review Profile</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</main>
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-2 pb-6 bg-white dark:bg-zinc-900 shadow-[0_-4px_40px_rgba(28,28,24,0.06)] rounded-t-[2rem] z-50">
+<div class="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400 p-2 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all active:scale-90 duration-200 ease-in-out">
+<span class="material-symbols-outlined mb-1">home_work</span>
+<span class="font-['Manrope'] font-medium text-[11px] tracking-wide uppercase">Properties</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-emerald-900 text-white dark:bg-emerald-50 dark:text-emerald-950 rounded-2xl p-3 min-w-[72px] hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all active:scale-90 duration-200 ease-in-out">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-['Manrope'] font-medium text-[11px] tracking-wide uppercase">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400 p-2 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all active:scale-90 duration-200 ease-in-out">
+<span class="material-symbols-outlined mb-1">group_add</span>
+<span class="font-['Manrope'] font-medium text-[11px] tracking-wide uppercase">Inquiries</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400 p-2 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all active:scale-90 duration-200 ease-in-out">
+<span class="material-symbols-outlined mb-1">person_outline</span>
+<span class="font-['Manrope'] font-medium text-[11px] tracking-wide uppercase">Profile</span>
+</div>
+</nav>
+<div class="fixed right-6 bottom-32 z-50">
+<button class="w-16 h-16 bg-secondary rounded-full shadow-2xl flex items-center justify-center text-white hover:rotate-12 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">chat</span>
+</button>
+</div>
+</body></html>

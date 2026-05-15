@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-fixed": "#241a00",
+                        "tertiary-container": "#cba72f",
+                        "surface": "#fdf9f3",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e6e2dc",
+                        "tertiary-fixed": "#ffe088",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#75ac94",
+                        "on-surface-variant": "#404944",
+                        "surface-container-high": "#ebe8e2",
+                        "surface-container-highest": "#e6e2dc",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#31302d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#76320f",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c0c9c2",
+                        "primary": "#00281c",
+                        "secondary-container": "#fe9e72",
+                        "on-primary-fixed": "#002116",
+                        "surface-bright": "#fdf9f3",
+                        "surface-dim": "#dddad4",
+                        "secondary-fixed": "#ffdbcd",
+                        "inverse-on-surface": "#f4f0ea",
+                        "primary-container": "#00402e",
+                        "on-secondary-container": "#773310",
+                        "secondary": "#944925",
+                        "tertiary": "#735c00",
+                        "on-secondary": "#ffffff",
+                        "outline": "#707974",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#17503d",
+                        "on-tertiary-container": "#4e3d00",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-secondary-fixed": "#360f00",
+                        "background": "#fdf9f3",
+                        "inverse-primary": "#9ad2b9",
+                        "primary-fixed": "#b6efd5",
+                        "surface-tint": "#326854",
+                        "on-background": "#1c1c18",
+                        "primary-fixed-dim": "#9ad2b9",
+                        "surface-container-low": "#f7f3ed",
+                        "on-surface": "#1c1c18",
+                        "surface-container": "#f1ede7",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#ffb596",
+                        "tertiary-fixed-dim": "#e9c349"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .adire-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 30-30 30L0 30z' fill='%2300402e' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        .editorial-shadow {
+            box-shadow: 0 20px 40px -10px rgba(28, 28, 24, 0.06);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopAppBar Shell -->
+<header class="bg-emerald-950/80 dark:bg-emerald-950/90 backdrop-blur-xl text-emerald-50 dark:text-emerald-50 docked full-width top-0 z-50 sticky">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-full mx-auto">
+<div class="flex items-center gap-4">
+<button class="hover:bg-emerald-900/50 transition-colors scale-95 active:duration-150 transition-all p-2 rounded-full">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-['Manrope'] font-extrabold tracking-tighter headline-lg text-2xl font-black text-emerald-50 tracking-[-0.02em]">Avenue Scholar</h1>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-8 text-sm font-bold">
+<a class="text-amber-400 font-bold" href="#">Home</a>
+<a class="text-emerald-100/70 hover:bg-emerald-900/50 transition-colors" href="#">Bookings</a>
+<a class="text-emerald-100/70 hover:bg-emerald-900/50 transition-colors" href="#">Matching</a>
+<a class="text-emerald-100/70 hover:bg-emerald-900/50 transition-colors" href="#">Profile</a>
+</nav>
+<button class="hover:bg-emerald-900/50 transition-colors scale-95 active:duration-150 transition-all p-2 rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-10">
+<!-- Hero Search Section -->
+<section class="mb-16">
+<h2 class="font-headline font-extrabold text-[3.5rem] leading-none tracking-[-0.02em] text-primary mb-8 max-w-2xl">
+                Curated Living for the <span class="text-secondary">Sovereign Scholar.</span>
+</h2>
+<!-- Bold Search Bar Cluster -->
+<div class="bg-surface-container-lowest editorial-shadow rounded-[1.5rem] p-2 flex flex-col md:flex-row items-center gap-2 max-w-4xl border border-outline-variant/10">
+<div class="flex-1 flex items-center px-4 w-full">
+<span class="material-symbols-outlined text-outline mr-3">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-body-lg font-medium py-4" placeholder="Search Lekki, Victoria Island, Abuja..." type="text"/>
+</div>
+<div class="flex flex-wrap md:flex-nowrap items-center gap-2 p-2 w-full md:w-auto">
+<button class="flex items-center gap-2 px-5 py-3 rounded-full bg-surface-container-low hover:bg-surface-container-high transition-colors text-label-md font-bold uppercase tracking-wider text-primary">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+                        Price
+                    </button>
+<button class="flex items-center gap-2 px-5 py-3 rounded-full bg-surface-container-low hover:bg-surface-container-high transition-colors text-label-md font-bold uppercase tracking-wider text-primary">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+                        Area
+                    </button>
+<button class="flex items-center gap-2 px-5 py-3 rounded-full bg-surface-container-low hover:bg-surface-container-high transition-colors text-label-md font-bold uppercase tracking-wider text-primary">
+<span class="material-symbols-outlined text-[20px]">apartment</span>
+                        Type
+                    </button>
+<button class="w-full md:w-auto px-8 py-3 bg-primary text-on-primary rounded-full font-bold transition-all hover:opacity-90 active:scale-95">
+                        Discover
+                    </button>
+</div>
+</div>
+</section>
+<!-- Listing Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+<!-- Property Card 1 -->
+<div class="group relative bg-surface-container-lowest rounded-[2rem] overflow-hidden editorial-shadow transition-transform hover:-translate-y-2 adire-pattern">
+<div class="relative h-[400px] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="modern brutalist architecture house in Lagos with large glass windows and lush tropical landscaping at dusk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTWwG9oRTRAnMQUyXnOHcG5uxzINFZyBvSC-bBhCbfFncjfr1s7l-3NS-m1B08lQ5BmkdpXcZBn3wtYpKH8iqv9JUk0X5y4kk3poTeyAMewOPI6rZR8rcdlRlW7k5RPnVPLxkVlHG3zjEQTRyrtZl3lJ2ELksr2lchj0Oo_1jDhuueAcLf8dpOxhsWGnK-rpWa_-CrTb9TTlR2AFM4_3i94TCUK17uschB4WFJt4pclXIZT4g3wkkfSZA157mTAr64HjrgxeoBKaUY"/>
+<div class="absolute top-6 left-6 flex flex-col gap-2">
+<div class="bg-tertiary-fixed text-on-tertiary-fixed px-4 py-2 rounded-full flex items-center gap-2 shadow-lg backdrop-blur-md">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Verified Landlord</span>
+</div>
+</div>
+<div class="absolute bottom-6 right-6 bg-surface/90 backdrop-blur-md px-5 py-2 rounded-xl text-primary font-bold text-xl">
+                        ₦4,500,000<span class="text-xs font-normal opacity-70">/yr</span>
+</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline font-extrabold text-2xl text-primary leading-tight">The Heritage Residency</h3>
+<p class="text-outline flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+                                Phase 1, Lekki
+                            </p>
+</div>
+</div>
+<div class="flex gap-6 py-4 border-t border-outline-variant/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">bed</span>
+<span class="font-bold text-primary">2 Beds</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">bathtub</span>
+<span class="font-bold text-primary">2 Baths</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">wifi</span>
+<span class="font-bold text-primary">High-Speed</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Property Card 2 (Asymmetric Layout Spacing) -->
+<div class="group relative bg-surface-container-lowest rounded-[2rem] overflow-hidden editorial-shadow transition-transform hover:-translate-y-2 adire-pattern lg:mt-12">
+<div class="relative h-[400px] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="contemporary luxury penthouse in Abuja with infinity pool overlooking the city skyline and warm evening lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA46thRe-hGveS4YfOUXbN0KPw-AMUkujaFMyGE0RTqqfaNTiurxzST62Q3O7eOrh-P3t-wsL0ixMxSiTmFlzGWvu241nsGlIBSJiJU4-OH-g8AAZMrv0-mNURofxWKpAYqXZAcA5_-31AHkL3yrx-KplIpaPY4WJ42czbH1ADHxc8Ju07u1bNoi4XfDzVxlOs7FRsyNuodFeWrTHUGqa-Jvyg14bSzw5sYTn4Y_0tQJAsY1M9IEXSoBxir2nFYkbyDtpWamqIkrSay"/>
+<div class="absolute top-6 left-6 flex flex-col gap-2">
+<div class="bg-tertiary-fixed text-on-tertiary-fixed px-4 py-2 rounded-full flex items-center gap-2 shadow-lg backdrop-blur-md">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Verified Landlord</span>
+</div>
+</div>
+<div class="absolute bottom-6 right-6 bg-surface/90 backdrop-blur-md px-5 py-2 rounded-xl text-primary font-bold text-xl">
+                        ₦7,200,000<span class="text-xs font-normal opacity-70">/yr</span>
+</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline font-extrabold text-2xl text-primary leading-tight">Maitama SkyLofts</h3>
+<p class="text-outline flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+                                Maitama District, Abuja
+                            </p>
+</div>
+</div>
+<div class="flex gap-6 py-4 border-t border-outline-variant/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">apartment</span>
+<span class="font-bold text-primary">Studio</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">bolt</span>
+<span class="font-bold text-primary">24/7 Power</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Property Card 3 -->
+</div>
+<!-- Section Spacer with Ankara Texture -->
+<!-- Curated Carousel Intro -->
+</main>
+<!-- BottomNavBar Shell (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-2 pb-6 bg-white dark:bg-zinc-900 rounded-t-[2rem] z-50 shadow-[0_-4px_40px_rgba(28,28,24,0.06)]">
+<a class="flex flex-col items-center justify-center bg-emerald-900 text-white dark:bg-emerald-50 dark:text-emerald-950 rounded-2xl p-3 min-w-[72px] active:scale-90 duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">home_work</span>
+<span class="font-['Manrope'] font-medium text-[11px] tracking-wide uppercase mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400 p-2 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-['Manrope'] font-medium text-[11px] tracking-wide uppercase mt-1">Bookings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400 p-2 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">group_add</span>
+<span class="font-['Manrope'] font-medium text-[11px] tracking-wide uppercase mt-1">Matching</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400 p-2 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">person_outline</span>
+<span class="font-['Manrope'] font-medium text-[11px] tracking-wide uppercase mt-1">Profile</span>
+</a>
+</nav>
+<!-- Separation spacer for BottomNav -->
+<div class="md:hidden h-24"></div>
+</body></html>

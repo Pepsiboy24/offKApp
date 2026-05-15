@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed": "#241a00",
+              "tertiary-container": "#cba72f",
+              "surface": "#fdf9f3",
+              "on-primary": "#ffffff",
+              "surface-variant": "#e6e2dc",
+              "tertiary-fixed": "#ffe088",
+              "on-error": "#ffffff",
+              "on-primary-container": "#75ac94",
+              "on-surface-variant": "#404944",
+              "surface-container-high": "#ebe8e2",
+              "surface-container-highest": "#e6e2dc",
+              "error": "#ba1a1a",
+              "inverse-surface": "#31302d",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-fixed-variant": "#76320f",
+              "on-error-container": "#93000a",
+              "outline-variant": "#c0c9c2",
+              "primary": "#00281c",
+              "secondary-container": "#fe9e72",
+              "on-primary-fixed": "#002116",
+              "surface-bright": "#fdf9f3",
+              "surface-dim": "#dddad4",
+              "secondary-fixed": "#ffdbcd",
+              "inverse-on-surface": "#f4f0ea",
+              "primary-container": "#00402e",
+              "on-secondary-container": "#773310",
+              "secondary": "#944925",
+              "tertiary": "#735c00",
+              "on-secondary": "#ffffff",
+              "outline": "#707974",
+              "error-container": "#ffdad6",
+              "on-primary-fixed-variant": "#17503d",
+              "on-tertiary-container": "#4e3d00",
+              "on-tertiary-fixed-variant": "#574500",
+              "on-secondary-fixed": "#360f00",
+              "background": "#fdf9f3",
+              "inverse-primary": "#9ad2b9",
+              "primary-fixed": "#b6efd5",
+              "surface-tint": "#326854",
+              "on-background": "#1c1c18",
+              "primary-fixed-dim": "#9ad2b9",
+              "surface-container-low": "#f7f3ed",
+              "on-surface": "#1c1c18",
+              "surface-container": "#f1ede7",
+              "on-tertiary": "#ffffff",
+              "secondary-fixed-dim": "#ffb596",
+              "tertiary-fixed-dim": "#e9c349"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .adire-pattern {
+            background-image: radial-gradient(circle at 2px 2px, rgba(0, 40, 46, 0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .editorial-shadow {
+            shadow-color: #1c1c18;
+            box-shadow: 0 20px 40px -15px rgba(28, 28, 24, 0.06);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-tertiary-fixed selection:text-on-tertiary-fixed">
+<!-- Top Navigation -->
+<header class="bg-emerald-950/80 dark:bg-emerald-950/90 backdrop-blur-xl text-emerald-50 dark:text-emerald-50 docked full-width top-0 z-50 sticky shadow-none">
+<nav class="flex justify-between items-center w-full px-6 py-4 max-w-full mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined hover:bg-emerald-900/50 transition-colors p-2 rounded-full cursor-pointer">menu</span>
+<h1 class="font-['Manrope'] font-extrabold tracking-tighter headline-lg text-2xl font-black text-emerald-50 tracking-[-0.02em]">Avenue Scholar</h1>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-amber-400 font-bold headline-sm" href="#">Home</a>
+<a class="text-emerald-100/70 hover:bg-emerald-900/50 transition-colors p-2 rounded-lg" href="#">Listings</a>
+<a class="text-emerald-100/70 hover:bg-emerald-900/50 transition-colors p-2 rounded-lg" href="#">Community</a>
+</div>
+<span class="material-symbols-outlined hover:bg-emerald-900/50 transition-colors p-2 rounded-full cursor-pointer">notifications</span>
+</div>
+</nav>
+</header>
+<main class="max-w-7xl mx-auto px-6 pt-8 pb-32">
+<!-- Hero Welcome Section -->
+<section class="relative mb-12 overflow-hidden rounded-[2rem] bg-primary-container p-8 md:p-12">
+<div class="absolute inset-0 adire-pattern opacity-10"></div>
+<div class="relative z-10 flex flex-col md:flex-row justify-between items-end md:items-center gap-8">
+<div class="max-w-2xl">
+<span class="text-tertiary-fixed-dim font-bold tracking-[0.1em] uppercase text-xs mb-4 block">Dashboard Overview</span>
+<h2 class="text-white font-headline font-extrabold text-4xl md:text-6xl tracking-tight mb-4">Welcome back, <span class="text-tertiary-fixed">Tunde</span>.</h2>
+<p class="text-on-primary-container text-lg max-w-md leading-relaxed">Your journey to the perfect university residence is 75% complete. Two applications are awaiting your review.</p>
+</div>
+<div class="flex -space-x-4 mb-2">
+<img class="w-16 h-16 rounded-full border-4 border-primary-container object-cover" data-alt="close-up portrait of a confident young Nigerian female student smiling in soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4t-iTGEGs6zZbsZXyjusLN65MwGODJdd7EQIsnMI9aWBF8px24ijfCBMcwggpg1mLZ2m7uyf0MUe6Qiy_A9uvmTQJtLm9E1OUY5YReGOSSb6a6P2CajS0gA_nAWlbW1Z10ATA4SXFvp21bSQNg92MmKWcHRkegiD_CGcJqyIuA-zQD-X0nGl0ZzW9t_BQHiV51LMCKO1GC8Lsv9z2Z5qy8SUmh12PAhtxvSRwidrHzhzGf0eQqTClB8BdN02BXZi8kAXfF_Z3_1hF"/>
+<img class="w-16 h-16 rounded-full border-4 border-primary-container object-cover" data-alt="close-up portrait of a young West African man in a library setting with warm ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo5thptq7U00pi6kUdZ9J1fiZfW0e1l8oixcZ1gAzlbNFsdBTmAPDc-hET98wqfUICz-MjZHI1SMJRJmaszs8klc8F96hfpP3-gwWnTFdW-gO0-Q0Lq8HR59oFdT7tmchQvoyGlfkEGRGAydoCym5Rhn-ffkIIc8Ui2VPvw84UkMTduqXkqaBiNoEaRvfyAw2gNZLP5pNHmwrqVXoHyTTcOWlRg6lxiLqJfqI-_j2ypWwSoTtotkl_Ip--RplLg_-lEoq_CUynYpow"/>
+<div class="w-16 h-16 rounded-full border-4 border-primary-container bg-tertiary-container flex items-center justify-center text-on-tertiary-container font-bold">+12</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Applications Tracker: Asymmetric Bento Style -->
+<div class="lg:col-span-8 space-y-8">
+<div class="bg-surface-container-low rounded-[2rem] p-8 editorial-shadow">
+<div class="flex justify-between items-center mb-8">
+<h3 class="font-headline font-extrabold text-2xl tracking-tight">My Applications</h3>
+<button class="text-primary font-bold flex items-center gap-2 hover:underline">
+                            View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="space-y-4">
+<!-- Application Card 1 -->
+<div class="group bg-surface-container-lowest p-6 rounded-2xl flex flex-col md:flex-row gap-6 items-center transition-all hover:translate-y-[-4px]">
+<div class="w-full md:w-32 h-24 rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="modern brutalist architecture apartment building in Lagos with lush tropical landscaping and glass balconies" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKMVIKbFE71U2ziIXT2JK3C1gAJGCnZZx0kEfxwNhFNwwseeOzgD0-wIAGRUU1R2cCGSXrCwF2BF9jSUeowBkNY28L0_ZEqNhmfbtYc4z5htggu0HSeeruUrgLugPhOMxXYKUXTp239zUlaMtgmH8Hfbd8nPReCMZV97XRuIOZKYnnFwQX7GR88XG3psU994TRTIoIfVMmKE3ZF8IpzStUacXooXBXeDivoCSVVlTTC2AzDVRGL9SEy7vpPeE5tAM4CMCSvMKzoTRr"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-bold text-xl">The Heritage Enclave, Lekki</h4>
+<span class="bg-primary-fixed text-on-primary-fixed px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Under Review</span>
+</div>
+<div class="flex gap-4 text-on-surface-variant text-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">location_on</span> Phase 1, Lekki</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">calendar_today</span> Applied Oct 12</span>
+</div>
+</div>
+<div class="w-full md:w-auto">
+<button class="w-full md:w-auto bg-primary text-on-primary px-6 py-3 rounded-xl font-bold transition-all active:scale-95">Track</button>
+</div>
+</div>
+<!-- Application Card 2 -->
+<div class="group bg-surface-container-lowest p-6 rounded-2xl flex flex-col md:flex-row gap-6 items-center transition-all hover:translate-y-[-4px]">
+<div class="w-full md:w-32 h-24 rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="contemporary luxury residence interior with high ceilings and warm wooden accents in Abuja" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAm8urzWn4wKSeMWqKcJKZgl9nXGgzchKi2ThsXOkVuO4_3W1yOEEuen4wlfMM_ZeihIh5ThWJiOdAZSxLAX2MtqPhJwbbK1Oxw0h7nF2w4yZY07fglqeKQhKDc4SMeQ7e469WOsbAbf7lXsvYwK-sgq6fWfZu_zptpkLgU2kulRNqFbaDl8URQOxaAN8HLJEnynFz896W28XdWsV6cqWkcenwjCGCfDNcabHYiVQ55sNCzbRxNSgmLD749dKZ0U2nY71IlomDLFHrl"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-bold text-xl">Zaria Heights Student Plaza</h4>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Action Required</span>
+</div>
+<div class="flex gap-4 text-on-surface-variant text-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">location_on</span> Samaru, Zaria</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">calendar_today</span> Applied Oct 05</span>
+</div>
+</div>
+<div class="w-full md:w-auto">
+<button class="w-full md:w-auto bg-secondary-container text-on-secondary-container px-6 py-3 rounded-xl font-bold transition-all active:scale-95">Complete Info</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Roommate Matching -->
+</div>
+<!-- Saved Houses Side Column -->
+<aside class="lg:col-span-4 space-y-8">
+<div class="bg-surface-container rounded-[2rem] p-8">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-secondary text-3xl">bookmark</span>
+<h3 class="font-headline font-extrabold text-2xl tracking-tight">Saved Houses</h3>
+</div>
+<div class="space-y-6">
+<!-- Saved Property 1 -->
+<div class="relative group cursor-pointer overflow-hidden rounded-3xl bg-surface-container-lowest editorial-shadow transition-transform hover:scale-[1.02]">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover" data-alt="high-end minimalist apartment exterior with large glass windows and warm evening lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOYxHMZ2M1V19DfaUwKCLmXMh-r8pPsPaobt3Iu0AdpLWsdG-yxmGJ4g_ZSG4HhOzgqwLmhv8LZIyAvLUf1ds-nl7RNaY6F4CvzVFwdfiZTbYESQ26UXzlpEBKMkl8LO3JiLsSJkcNKl4HTBnn8P1GYEX4CU1mF1kr0pt1vvAldtCWMugtxkdcqnqv-4XKNlPRL6DSwiSGTEwdyI4jaGDU6l72Q9xH-iY3lKvtIPWv37rHVo-nuPAwx8XbHuLuHTTJTMlNM4-6pXtn"/>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-bold text-lg">Ikoyi Student Suites</h4>
+<span class="text-primary font-extrabold">₦450k<span class="text-[10px] text-on-surface-variant font-normal">/sem</span></span>
+</div>
+<div class="flex gap-4 text-xs text-on-surface-variant font-medium">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">bed</span> 1 Bed</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">wifi</span> High-Speed</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span> Verified</span>
+</div>
+</div>
+</div>
+<!-- Saved Property 2 -->
+<div class="relative group cursor-pointer overflow-hidden rounded-3xl bg-surface-container-lowest editorial-shadow transition-transform hover:scale-[1.02]">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover" data-alt="stylish modern apartment interior with colorful african textiles and warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnrPRP8FxaSNe9nnPNZzjYD4eYk4y_zrIXtYLeNyiFSqwWVT2Rge1SYeuYjF9-JK869Msv3hjA1nr6V1akiskRekgS7NweSMQB6Vi2BIF1tUD5ItBw_xHc_Rkgtho-Zg3oi-_1TvFkNjs3iSnYYL1cyXiqQEvNrHf93yN2n5I6G-AMmOOHQsS-QGhLsbVEQ-aYUtvFCRr7SB95xE-oG9WQ4xuH9bWJ4yIsdr5rjUDV-fpO9pqD-wSzluPY1NUaWsjtroJHZFXLum_0"/>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined">favorite</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-bold text-lg">The Landmark Lofts</h4>
+<span class="text-primary font-extrabold">₦380k<span class="text-[10px] text-on-surface-variant font-normal">/sem</span></span>
+</div>
+<div class="flex gap-4 text-xs text-on-surface-variant font-medium">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">bed</span> 2 Bed</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">pool</span> Gym &amp; Pool</span>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 py-4 bg-surface-container-high rounded-2xl font-bold text-primary hover:bg-surface-variant transition-colors">
+                        Discover more properties
+                    </button>
+</div>
+<!-- Ad Banner / CTA -->
+<div class="bg-tertiary rounded-[2rem] p-8 text-on-tertiary relative overflow-hidden">
+<div class="absolute inset-0 bg-black opacity-10 adire-pattern"></div>
+<div class="relative z-10">
+<span class="bg-white/20 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase mb-4 inline-block">Premium</span>
+<h4 class="font-headline font-extrabold text-2xl leading-tight mb-4">Unlock Exclusive Student Residences</h4>
+<p class="text-sm opacity-90 mb-6">Get early access to premium listings in Lagos, Abuja, and Port Harcourt before they go public.</p>
+<button class="bg-white text-tertiary px-8 py-3 rounded-xl font-bold tracking-tight shadow-xl">Upgrade Now</button>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="bg-white dark:bg-zinc-900 fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-2 pb-6 rounded-t-[2rem] z-50 shadow-[0_-4px_40px_rgba(28,28,24,0.06)]">
+<div class="bg-zinc-100 dark:bg-zinc-800 h-2 absolute top-0 w-12 rounded-full mt-2"></div>
+<a class="flex flex-col items-center justify-center bg-emerald-900 text-white dark:bg-emerald-50 dark:text-emerald-950 rounded-2xl p-3 min-w-[72px] active:scale-90 duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">home_work</span>
+<span class="font-['Manrope'] font-medium text-[11px] tracking-wide uppercase mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400 p-2 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all active:scale-90 duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-['Manrope'] font-medium text-[11px] tracking-wide uppercase mt-1">Bookings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400 p-2 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all active:scale-90 duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">person_outline</span>
+<span class="font-['Manrope'] font-medium text-[11px] tracking-wide uppercase mt-1">Profile</span>
+</a>
+</nav>
+</body></html>
